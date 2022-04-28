@@ -1,5 +1,6 @@
 import React from "react";
 
+// pureComponent wouldn't work because stringify create a new reference for everything in list everytime.
 class TodoItem extends React.PureComponent {
   render() {
     const {

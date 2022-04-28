@@ -19,10 +19,10 @@ class TodolistContainer extends React.Component {
   };
 
   handleOnSubmit = (e) => {
+    e.preventDefault();
     if (!this.state.inputValue) {
       alert("Please enter something");
     } else {
-      e.preventDefault();
       const randomId = uuidv4();
       const newTodo = { value: this.state.inputValue, id: randomId };
       this.setState((prevState) => {
