@@ -9,7 +9,9 @@ class TodoForm extends React.Component {
             onChange={this.props.onChange}
             value={this.props.value}
           ></input>
-          <button type="submit">Enter</button>
+          <button className="submit" type="submit">
+            Enter
+          </button>
         </form>
       </div>
     );

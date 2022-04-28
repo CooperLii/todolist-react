@@ -9,8 +9,6 @@ class TodoList extends React.Component {
             <Fragment key={todo.id}>
               <TodoItem
                 handleOnDelete={this.props.handleOnDelete}
-                // value={todo.value}
-                // id={todo.id}
                 todo={todo}
               />
             </Fragment>

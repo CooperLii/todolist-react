@@ -1,6 +1,6 @@
 import React from "react";
 
-class TodoItem extends React.Component {
+class TodoItem extends React.PureComponent {
   render() {
     const {
       todo: { value, id },
@@ -8,7 +8,12 @@ class TodoItem extends React.Component {
     return (
       <li className="todoItem">
         <span>{value}</span>
-        <button onClick={() => this.props.handleOnDelete(id)}>Delete</button>
+        <button
+          className="delete"
+          onClick={() => this.props.handleOnDelete(id)}
+        >
+          Delete
+        </button>
       </li>
     );
   }

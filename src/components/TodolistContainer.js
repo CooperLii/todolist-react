@@ -6,30 +6,32 @@ import { v4 as uuidv4 } from "uuid";
 class TodolistContainer extends React.Component {
   state = {
     inputValue: "",
-    todoList: [{ value: "hello", id: "1" }],
-    itemId: "1",
+    todoList: [{ value: "Eat breakfast", id: "1" }],
   };
 
   handleOnChange = (e) => {
     this.setState((prevState) => {
-      const newState = { ...prevState, inputValue: e.target.value };
+      const newState = JSON.parse(JSON.stringify(prevState));
+      newState.inputValue = e.target.value;
+
       return newState;
     });
   };
 
   handleOnSubmit = (e) => {
-    e.preventDefault();
-    const randomId = uuidv4();
-    const newTodo = { value: this.state.inputValue, id: randomId };
-    this.setState((prevState) => {
-      const newState = {
-        ...prevState,
-        todoList: [newTodo, ...prevState.todoList],
-        inputValue: "",
-        itemId: newTodo.id,
-      };
-      return newState;
-    });
+    if (!this.state.inputValue) {
+      alert("Please enter something");
+    } else {
+      e.preventDefault();
+      const randomId = uuidv4();
+      const newTodo = { value: this.state.inputValue, id: randomId };
+      this.setState((prevState) => {
+        const newState = JSON.parse(JSON.stringify(prevState));
+        newState.todoList.unshift(newTodo);
+        newState.inputValue = "";
+        return newState;
+      });
+    }
   };
 
   handleOnDelete = (itemId) => {
@@ -44,9 +46,6 @@ class TodolistContainer extends React.Component {
     });
   };
 
-  componentDidUpdate() {
-    console.log("from update", this.state.todoList);
-  }
   render() {
     return (
       <div className="TodolistContainer">
